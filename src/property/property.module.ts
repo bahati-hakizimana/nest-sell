@@ -7,7 +7,13 @@ import { APP_PIPE } from '@nestjs/core';
   providers:[
     {
       provide: APP_PIPE,
-      useValue: new ValidationPipe( {whitelist:true, forbidNonWhitelisted:true} )
+      useValue: new ValidationPipe( {whitelist:true, forbidNonWhitelisted:true, transform:true,
+        transformOptions:{
+
+          enableImplicitConversion:true,
+
+        }
+      } )
     }
   ]
 })
