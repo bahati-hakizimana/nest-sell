@@ -1,16 +1,21 @@
 import { IsInt, IsPositive, IsString, Length } from "class-validator";
+import { group } from "console";
+import { create } from "domain";
 
 export class CreatePropertyDto{
 
-    @IsString()
-    @Length(2, 10,{message: "error, name must be greater or equal to two characters"})
+    @IsString({always:true})
+    @Length(2, 10,{groups:['create']})
+    @Length(1, 15,{groups:['update']})
 
     name: string;
 
     @IsString()
+    @Length(2, 10, {groups:['create']})
+    @Length(1, 15, {groups:['update']})
     description: string;
 
-    @IsInt()
+    @IsInt({always:true})
     @IsPositive()
     area:number;
 }
